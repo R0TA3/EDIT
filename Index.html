@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Achu S — Video Editor &amp; Social Media Producer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#171512;
+    --ink-soft:#5c574f;
+    --line:#e7e2d9;
+    --panel:#faf8f4;
+    --gold:#9c7a2e;
+    --gold-deep:#6f581f;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:auto;background:var(--bg);color:var(--ink);}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;color:var(--ink);}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+
+  header.top{position:sticky;top:env(safe-area-inset-top,0px);background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:10;}
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;max-width:960px;margin:0 auto;}
+  .nav .mark{font-family:'Fraunces',serif;font-size:1.15rem;letter-spacing:.02em;}
+  .nav ul{list-style:none;display:flex;gap:26px;font-size:.92rem;color:var(--ink-soft);}
+  .nav ul a{text-decoration:none;transition:color .15s;}
+  .nav ul a:hover{color:var(--gold-deep);}
+  .nav .nav-toggle{display:none;}
+
+  .hero{padding:88px 0 64px;border-bottom:1px solid var(--line);}
+  .hero .kicker{color:var(--gold-deep);font-size:.95rem;margin-bottom:18px;}
+  .hero h1{font-size:clamp(2.4rem,6vw,3.6rem);line-height:1.08;max-width:14ch;}
+  .hero p.role{margin-top:18px;font-size:1.15rem;color:var(--ink-soft);max-width:46ch;}
+  .hero-meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:28px;font-size:.92rem;color:var(--ink-soft);}
+  .hero-meta span{display:block;color:var(--ink);font-family:'Fraunces',serif;font-size:1.05rem;}
+  .cta-row{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;}
+  .btn{display:inline-block;padding:13px 26px;border-radius:2px;text-decoration:none;font-size:.95rem;border:1px solid var(--ink);transition:background .15s,color .15s;}
+  .btn.solid{background:var(--ink);color:#fff;}
+  .btn.solid:hover{background:var(--gold-deep);border-color:var(--gold-deep);}
+  .btn.ghost:hover{background:var(--panel);}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .eyebrow{color:var(--gold-deep);font-size:.9rem;margin-bottom:10px;}
+  section h2{font-size:1.9rem;margin-bottom:22px;max-width:22ch;}
+
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start;}
+  .about-grid p{color:var(--ink-soft);margin-bottom:14px;max-width:52ch;}
+  .stat-list{display:flex;flex-direction:column;gap:22px;border-left:1px solid var(--line);padding-left:28px;}
+  .stat-list div{font-size:.92rem;color:var(--ink-soft);}
+  .stat-list span{display:block;font-family:'Fraunces',serif;font-size:2rem;color:var(--ink);line-height:1;margin-bottom:6px;}
+
+  .services{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .service{background:#fff;padding:30px;}
+  .service h3{font-size:1.1rem;margin-bottom:10px;}
+  .service p{color:var(--ink-soft);font-size:.94rem;}
+
+  .skills-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .skill-pill{border:1px solid var(--line);padding:8px 16px;border-radius:2px;font-size:.88rem;color:var(--ink-soft);}
+
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .work-card{border:1px solid var(--line);padding:26px;background:var(--panel);}
+  .work-card h3{font-size:1.05rem;margin-bottom:6px;}
+  .work-card p{color:var(--ink-soft);font-size:.92rem;margin-bottom:14px;}
+  .work-card a{font-size:.88rem;color:var(--gold-deep);text-decoration:none;border-bottom:1px solid var(--gold-deep);}
+
+  .contact-grid{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:flex-end;}
+  .contact-list{font-size:1rem;}
+  .contact-list div{margin-bottom:10px;}
+  .contact-list span{color:var(--ink-soft);display:inline-block;width:96px;}
+
+  footer{padding:28px 0;text-align:center;color:var(--ink-soft);font-size:.85rem;}
+
+  @media(max-width:720px){
+    .nav ul{display:none;}
+    .about-grid,.services,.work-grid{grid-template-columns:1fr;}
+    .hero{padding:64px 0 44px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <nav class="nav">
+    <div class="mark">Achu S</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top">
+    <div class="kicker">Video Editor · Videographer · Social Media Marketing</div>
+    <h1>Video that gets watched, not just uploaded.</h1>
+    <p class="role">I edit and produce video content across social platforms, then run the marketing behind it — from the cut to the caption to the growth strategy.</p>
+    <div class="hero-meta">
+      <div>Experience<span>7 Years</span></div>
+      <div>Based in<span>Palakkad, Kerala</span></div>
+      <div>Pages managed<span>2 active brands</span></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn solid" href="#work">View work</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="eyebrow">About</div>
+    <h2>Editor first, marketer second — both full time.</h2>
+    <div class="about-grid">
+      <div>
+        <p>Over the past 7 years I've edited a wide range of video content and handled social media pages end to end — planning, posting, and growing them. I understand what makes a video actually perform on Instagram, YouTube, and Reels, not just look good on a timeline.</p>
+        <p>I run two pages of my own: <strong>@a3flik</strong> for editing work and <strong>@kiwimedia_</strong> for video production and marketing, alongside client work.</p>
+      </div>
+      <div class="stat-list">
+        <div><span>07</span>Years editing experience</div>
+        <div><span>02</span>Brand pages managed</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="eyebrow">Services</div>
+    <h2>What I take on</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Video Editing</h3>
+        <p>Reels, short-form content, promos, and long-form edits — pacing, sound design, and color grading included.</p>
+      </div>
+      <div class="service">
+        <h3>Videography</h3>
+        <p>On-location shooting for events, brands, and social content, shot with editing in mind.</p>
+      </div>
+      <div class="service">
+        <h3>Social Media Management</h3>
+        <p>Content calendars, posting strategy, and page growth across Instagram and other platforms.</p>
+      </div>
+      <div class="service">
+        <h3>Video Marketing</h3>
+        <p>Positioning and promoting video content to reach the right audience and drive engagement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">Tools</div>
+    <h2>Working kit</h2>
+    <div class="skills-row">
+      <span class="skill-pill">CapCut</span>
+      <span class="skill-pill">Color Grading</span>
+      <span class="skill-pill">Sound Design</span>
+      <span class="skill-pill">Motion Graphics</span>
+      <span class="skill-pill">Reels &amp; Short-Form Editing</span>
+      <span class="skill-pill">Instagram Growth</span>
+      <span class="skill-pill">Content Strategy</span>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="eyebrow">Work</div>
+    <h2>Where to see it</h2>
+    <div class="work-grid">
+      <div class="work-card">
+        <h3>@a3flik</h3>
+        <p>Editing portfolio — reels, cuts, and sample work.</p>
+        <a href="https://www.instagram.com/a3flik" target="_blank" rel="noopener">View on Instagram →</a>
+      </div>
+      <div class="work-card">
+        <h3>@kiwimedia_</h3>
+        <p>Video production and marketing page.</p>
+        <a href="https://www.instagram.com/kiwimedia_" target="_blank" rel="noopener">View on Instagram →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's work together</h2>
+    <div class="contact-grid">
+      <div class="contact-list">
+        <div><span>Email</span>achu40403@gmail.com</div>
+        <div><span>Phone</span>+91 8590784253</div>
+        <div><span>Location</span>Palakkad, Kerala, India</div>
+        <div><span>LinkedIn</span>linkedin.com/in/achu-s-198926377</div>
+      </div>
+      <a class="btn solid" href="mailto:achu40403@gmail.com">Email me</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Achu S — Video Editor &amp; Social Media Producer</footer>
+
+</body>
+      </html>
+      
